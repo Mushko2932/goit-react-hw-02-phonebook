@@ -1,10 +1,24 @@
 import React from "react";
-// import { nanoid } from 'nanoid';
-
+import { ContactsForm } from "components/ContactsForm/ContactsForm";
+import { ContactList } from "components/ContactList/ContactList";
+import contacts from "components/contacts.json";
+console.log('contacts :>> ', contacts);
 export class App extends React.Component {
   state = {
-    contacts: [],
-    name: '',
+    contacts,
+    filter: '',
+  };
+
+  addContact = newContact => {
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, newContact],
+    }));
+  };
+
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
   };
 
   render() {
@@ -13,21 +27,14 @@ export class App extends React.Component {
         style={{
           height: '100vh',
           marginLeft: '20px',
-          fontSize: 40,
+          fontSize: 20,
           color: '#010101',
         }}
       >
-        <form>
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </form>
-        <button>Add contact</button>
+        <h1>Phonebook</h1>
+        <ContactsForm onAdd={this.addContact} />
+          <h2>Contacts</h2>
+          <ContactList contacts={contacts} onDelete={this.deleteContact} />
       </div>
     );
   }
