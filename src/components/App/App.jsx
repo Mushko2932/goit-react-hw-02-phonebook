@@ -2,6 +2,7 @@ import React from "react";
 import { ContactsForm } from "components/ContactsForm/ContactsForm";
 import { ContactList } from "components/ContactList/ContactList";
 import contacts from "components/contacts.json";
+import { SearchForm } from "components/SearchForm/SearchForm";
 console.log('contacts :>> ', contacts);
 export class App extends React.Component {
   state = {
@@ -21,7 +22,12 @@ export class App extends React.Component {
     }));
   };
 
+  changeSearchForm = e => {
+    this.setState({ filter: e.currentTarget.value.toLowerCase() });
+  };
+
   render() {
+    const { filter } = this.state;
     return (
       <div
         style={{
@@ -33,8 +39,9 @@ export class App extends React.Component {
       >
         <h1>Phonebook</h1>
         <ContactsForm onAdd={this.addContact} />
-          <h2>Contacts</h2>
-          <ContactList contacts={contacts} onDelete={this.deleteContact} />
+        <SearchForm onChange={this.changeSearchForm} value={filter} />
+        <h2>Contacts</h2>
+        <ContactList contacts={contacts} onDelete={this.deleteContact} />
       </div>
     );
   }
