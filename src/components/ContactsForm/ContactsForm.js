@@ -1,6 +1,7 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Field } from 'formik';
 import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
+import { Form, FormLabel, FormBtn } from './ContactsForm.styled';
 
 const ContactShema = Yup.object().shape({
   name: Yup.string()
@@ -34,7 +35,7 @@ export const ContactsForm = ({onAdd}) => {
       onSubmit={handleSabmit}
     >
       <Form>
-        <label>
+        <FormLabel>
           Name
           <Field
             name="name"
@@ -42,8 +43,8 @@ export const ContactsForm = ({onAdd}) => {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-        </label>
-        <label>
+        </FormLabel>
+        <FormLabel>
           Number
           <Field
             type="tel"
@@ -52,8 +53,8 @@ export const ContactsForm = ({onAdd}) => {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-        </label>
-        <button type="submit">Add contact</button>
+        </FormLabel>
+        <FormBtn type="submit">Add contact</FormBtn>
       </Form>
     </Formik>
   );

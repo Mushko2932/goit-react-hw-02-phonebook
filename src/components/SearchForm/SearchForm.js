@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types';
+import { Filter, FilterField } from './SearchForm.styled';
 
 export const SearchForm = ({value, onChange}) => {
     return (
-      <label>
+      <Filter>
         Find contacts by name
-        <input type="text" name="name" value={value} onChange={onChange}/>
-      </label>
+        <FilterField
+          type="text"
+          name="name"
+          value={value}
+          onChange={onChange}
+        />
+      </Filter>
     );
 }
 

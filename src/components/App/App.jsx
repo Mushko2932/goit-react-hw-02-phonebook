@@ -39,8 +39,8 @@ export class App extends React.Component {
       >
         <h1>Phonebook</h1>
         <ContactsForm onAdd={this.addContact} />
-        <SearchForm onChange={this.changeSearchForm} value={filter} />
         <h2>Contacts</h2>
+        <SearchForm onChange={this.changeSearchForm} value={filter} />
         <ContactList contacts={contacts} onDelete={this.deleteContact} />
       </div>
     );
