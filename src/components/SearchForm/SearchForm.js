@@ -10,6 +10,7 @@ export const SearchForm = ({value, onChange}) => {
           name="name"
           value={value}
           onChange={onChange}
+          placeholder="search"
         />
       </Filter>
     );

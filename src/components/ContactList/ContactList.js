@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import {
   ContactRoster,
   ContactItem,
-  CntactBtn,
+  ContactBtn,
   ContactInfo,
 } from './ContactList.styled';
 
@@ -14,9 +14,9 @@ export const ContactList = ({ contacts, onDelete }) => {
         <ContactItem key={id}>
           <ContactInfo>{name}:</ContactInfo>
           <ContactInfo>{number}:</ContactInfo>
-          <CntactBtn type="button" onClick={() => onDelete(id)}>
+          <ContactBtn type="button" onClick={() => onDelete(id)}>
             Delete
-          </CntactBtn>
+          </ContactBtn>
         </ContactItem>
       ))}
     </ContactRoster>

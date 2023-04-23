@@ -1,7 +1,7 @@
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
-import { Form, FormLabel, FormBtn } from './ContactsForm.styled';
+import { Form, FormLabel, FormBtn, Field } from './ContactsForm.styled';
 
 const ContactShema = Yup.object().shape({
   name: Yup.string()
@@ -20,13 +20,13 @@ const state = {
 };
 
 export const ContactsForm = ({onAdd}) => {
-  const handleSabmit = (values, {resetForm}) => {
+  const handleSabmit = (values, actions) => {
       console.log('values :>> ', values);
       onAdd({
           ...values,
           id: nanoid()
       });
-      resetForm();
+      actions.resetForm();
   };
   return (
     <Formik

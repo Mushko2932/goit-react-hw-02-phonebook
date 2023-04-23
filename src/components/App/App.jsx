@@ -3,7 +3,8 @@ import { ContactsForm } from "components/ContactsForm/ContactsForm";
 import { ContactList } from "components/ContactList/ContactList";
 import contacts from "components/contacts.json";
 import { SearchForm } from "components/SearchForm/SearchForm";
-console.log('contacts :>> ', contacts);
+import { Container } from "./App.styled";
+
 export class App extends React.Component {
   state = {
     contacts,
@@ -23,26 +24,27 @@ export class App extends React.Component {
   };
 
   changeSearchForm = e => {
-    this.setState({ filter: e.currentTarget.value.toLowerCase() });
+    this.setState({ filter: e.currentTarget.value });
+  };
+
+  getContacts = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
   };
 
   render() {
     const { filter } = this.state;
     return (
-      <div
-        style={{
-          height: '100vh',
-          marginLeft: '20px',
-          fontSize: 20,
-          color: '#010101',
-        }}
-      >
+      <Container>
         <h1>Phonebook</h1>
         <ContactsForm onAdd={this.addContact} />
         <h2>Contacts</h2>
         <SearchForm onChange={this.changeSearchForm} value={filter} />
-        <ContactList contacts={contacts} onDelete={this.deleteContact} />
-      </div>
+        <ContactList contacts={this.getContacts()} onDelete={this.deleteContact} />
+      </Container>
     );
   }
 };

@@ -10,4 +10,7 @@ export const Filter = styled.label`
 
 export const FilterField = styled.input`
     width: 240px;
+    height: 30px;
+    border: 0;
+    border-radius: 4px;
 `;
